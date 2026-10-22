@@ -13,7 +13,7 @@ public enum Config {
     private static let defaultPublicBaseURL = "http://localhost:3000"
 
     /// The base URL for authenticated and staff REST API calls.
-    public static var apiBaseURL: URL {
+    nonisolated public static var apiBaseURL: URL {
         if let urlString = Bundle.main.infoDictionary?["API_BASE_URL"] as? String,
            let url = URL(string: urlString),
            !urlString.isEmpty {
@@ -23,7 +23,7 @@ public enum Config {
     }
 
     /// The base public web URL used for public event link generation.
-    public static var publicBaseURL: URL {
+    nonisolated public static var publicBaseURL: URL {
         if let urlString = Bundle.main.infoDictionary?["PUBLIC_BASE_URL"] as? String,
            let url = URL(string: urlString),
            !urlString.isEmpty {
