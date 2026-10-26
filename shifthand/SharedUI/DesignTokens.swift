@@ -99,6 +99,17 @@ public enum SHMetrics {
     public static let spacingXL: CGFloat = 32
 }
 
+// MARK: - Corner Radius Tokens
+
+public enum SHCornerRadius {
+    /// 8 pt for status chips and compact tags.
+    public static let small: CGFloat = 8
+    /// 12 pt for buttons, cards, and interactive controls.
+    public static let medium: CGFloat = 12
+    /// 16 pt for primary cards and modal sheets.
+    public static let large: CGFloat = 16
+}
+
 // MARK: - Private Hex Initializers (Strictly Internal to DesignTokens)
 
 private extension Color {

@@ -50,7 +50,12 @@ public final class AppSession {
             let result = try await authRepository.login(email: email, password: password)
             self.currentUser = result.user
             self.memberships = result.memberships
-            self.activeMembership = result.memberships.first
+            if result.memberships.count == 1 {
+                self.activeMembership = result.memberships.first
+            } else {
+                // If 2+ memberships, prompt with OrgPickerView unless already selected
+                self.activeMembership = nil
+            }
         } catch let err as AppError {
             self.sessionError = err
             throw err
@@ -89,12 +94,14 @@ public final class AppSession {
             self.currentUser = result.user
             self.memberships = result.memberships
 
-            // Retain active membership if it still exists; otherwise default to first
+            // Retain active membership if it still exists; otherwise if 1 org select it, if 2+ clear for picker
             if let active = activeMembership,
                let updated = result.memberships.first(where: { $0.organisationId == active.organisationId }) {
                 self.activeMembership = updated
-            } else {
+            } else if result.memberships.count == 1 {
                 self.activeMembership = result.memberships.first
+            } else {
+                self.activeMembership = nil
             }
         } catch {
             // If session expired or invalid, reset
