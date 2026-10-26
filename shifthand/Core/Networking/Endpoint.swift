@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum HTTPMethod: String, Sendable {
+public nonisolated enum HTTPMethod: String, Sendable {
     case get = "GET"
     case post = "POST"
     case patch = "PATCH"
@@ -15,7 +15,7 @@ public enum HTTPMethod: String, Sendable {
     case put = "PUT"
 }
 
-public struct Endpoint: Sendable {
+public nonisolated struct Endpoint: Sendable {
     public let path: String
     public let method: HTTPMethod
     public let queryItems: [URLQueryItem]?
@@ -64,8 +64,8 @@ public struct Endpoint: Sendable {
         )
     }
 
-    /// Construct a URLRequest with authorization header and baseURL
-    public func urlRequest(baseURL: URL, token: String? = nil) throws -> URLRequest {
+    /// Construct a URLRequest with authorization header, organisation header, and baseURL
+    public func urlRequest(baseURL: URL, token: String? = nil, orgId: String? = nil) throws -> URLRequest {
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
             throw AppError.network("Malformed base URL")
         }
@@ -102,6 +102,11 @@ public struct Endpoint: Sendable {
         // Authorization header
         if let token = token, !token.isEmpty {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+
+        // Organisation-scoped header (X-Org-Id)
+        if let orgId = orgId, !orgId.isEmpty {
+            request.setValue(orgId, forHTTPHeaderField: "X-Org-Id")
         }
 
         // Idempotency-Key header if provided

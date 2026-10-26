@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Generic Data Envelope
 
-public struct DataEnvelope<T: Decodable>: Decodable {
+public nonisolated struct DataEnvelope<T: Decodable>: Decodable {
     public let data: T
     public let meta: [String: AnyDecodable]?
 
@@ -22,7 +22,7 @@ public struct DataEnvelope<T: Decodable>: Decodable {
 
 // MARK: - AnyDecodable Helper for Dynamic Metadata
 
-public struct AnyDecodable: Decodable, Sendable {
+public nonisolated struct AnyDecodable: Decodable, Sendable {
     public let value: Any
 
     public init(from decoder: Decoder) throws {
@@ -57,8 +57,12 @@ public actor APIClient {
     }
 
     /// Sends an endpoint request, automatically unwrapping { "data": T } if present.
-    public func send<T: Decodable>(_ endpoint: Endpoint, token: String? = nil) async throws -> T {
-        let request = try endpoint.urlRequest(baseURL: baseURL, token: token)
+    public func send<T: Decodable>(
+        _ endpoint: Endpoint,
+        token: String? = nil,
+        orgId: String? = nil
+    ) async throws -> T {
+        let request = try endpoint.urlRequest(baseURL: baseURL, token: token, orgId: orgId)
         let (data, response) = try await performData(for: request)
         try handleHTTPStatus(response: response, data: data)
 
@@ -76,8 +80,12 @@ public actor APIClient {
     }
 
     /// Sends an endpoint request where no response body is expected (e.g. 204 No Content).
-    public func sendVoid(_ endpoint: Endpoint, token: String? = nil) async throws {
-        let request = try endpoint.urlRequest(baseURL: baseURL, token: token)
+    public func sendVoid(
+        _ endpoint: Endpoint,
+        token: String? = nil,
+        orgId: String? = nil
+    ) async throws {
+        let request = try endpoint.urlRequest(baseURL: baseURL, token: token, orgId: orgId)
         let (data, response) = try await performData(for: request)
         try handleHTTPStatus(response: response, data: data)
     }

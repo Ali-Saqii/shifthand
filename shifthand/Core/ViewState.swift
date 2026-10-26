@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ViewState<T>: Sendable, Equatable where T: Sendable, T: Equatable {
+public nonisolated enum ViewState<T>: Sendable, Equatable where T: Sendable, T: Equatable {
     case idle
     case loading
     case loaded(T)

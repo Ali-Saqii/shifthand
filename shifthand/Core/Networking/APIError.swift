@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Known Server Error Codes
 
-public enum ServerErrorCode: String, Sendable, Equatable {
+public nonisolated enum ServerErrorCode: String, Sendable, Equatable {
     case shiftFull = "SHIFT_FULL"
     case shiftOverlap = "SHIFT_OVERLAP"
     case alreadyCheckedIn = "ALREADY_CHECKED_IN"
@@ -44,10 +44,10 @@ public enum ServerErrorCode: String, Sendable, Equatable {
 
 // MARK: - Server Error Envelope
 
-public struct ServerErrorEnvelope: Decodable, Sendable {
+public nonisolated struct ServerErrorEnvelope: Decodable, Sendable {
     public let error: ServerErrorDetail
 
-    public struct ServerErrorDetail: Decodable, Sendable {
+    public nonisolated struct ServerErrorDetail: Decodable, Sendable {
         public let code: String
         public let message: String
         public let details: [String: String]?
@@ -68,7 +68,7 @@ public struct ServerErrorEnvelope: Decodable, Sendable {
 
 // MARK: - AppError
 
-public enum AppError: Error, LocalizedError, Equatable, Sendable {
+public nonisolated enum AppError: Error, LocalizedError, Equatable, Sendable {
     case server(code: ServerErrorCode, rawCode: String, message: String, requestId: String?)
     case alreadyCheckedIn(checkedInAt: String?, message: String)
     case network(String)
