@@ -128,9 +128,10 @@ public struct EventsTabView: View {
         ScrollView {
             LazyVStack(spacing: 14) {
                 ForEach(events) { event in
-                    EventCardView(event: event) {
-                        // Event detail routing wired in Day 6
+                    NavigationLink(destination: EventDetailView(viewModel: EventDetailViewModel(eventId: event.id, appSession: session))) {
+                        EventCardView(event: event)
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, 16)
