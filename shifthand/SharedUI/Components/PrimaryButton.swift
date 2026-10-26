@@ -71,25 +71,25 @@ public struct PrimaryButton: View {
 }
 
 // MARK: - Previews (Light and Dark)
-#Preview("PrimaryButton States - Light") {
-    VStack(spacing: 16) {
-        PrimaryButton(title: "Sign In", isLoading: false, isEnabled: true, action: {})
-        PrimaryButton(title: "Signing In...", isLoading: true, isEnabled: true, action: {})
-        PrimaryButton(title: "Save Changes", isLoading: false, isEnabled: false, action: {})
-        PrimaryButton(title: "Delete Account", isLoading: false, isEnabled: true, role: .destructive, action: {})
-    }
-    .padding()
-    .background(Color.shBackgroundPrimary)
-    .preferredColorScheme(.light)
-}
-
-#Preview("PrimaryButton States - Dark") {
-    VStack(spacing: 16) {
-        PrimaryButton(title: "Sign In", isLoading: false, isEnabled: true, action: {})
-        PrimaryButton(title: "Signing In...", isLoading: true, isEnabled: true, action: {})
-        PrimaryButton(title: "Delete Account", isLoading: false, isEnabled: true, role: .destructive, action: {})
-    }
-    .padding()
-    .background(Color.shBackgroundPrimary)
-    .preferredColorScheme(.dark)
-}
+//#Preview() {
+//    VStack(spacing: 16) {
+//        PrimaryButton(title: "Sign In", isLoading: false, isEnabled: true, action: {})
+//        PrimaryButton(title: "Signing In...", isLoading: true, isEnabled: true, action: {})
+//        PrimaryButton(title: "Save Changes", isLoading: false, isEnabled: false, action: {})
+//        PrimaryButton(title: "Delete Account", isLoading: false, isEnabled: true, role: .destructive, action: {})
+//    }
+//    .padding()
+//    .background(Color.shBackgroundPrimary)
+//    .preferredColorScheme(.light)
+//}
+//
+//#Preview() {
+//    VStack(spacing: 16) {
+//        PrimaryButton(title: "Sign In", isLoading: false, isEnabled: true, action: {})
+//        PrimaryButton(title: "Signing In...", isLoading: true, isEnabled: true, action: {})
+//        PrimaryButton(title: "Delete Account", isLoading: false, isEnabled: true, role: .destructive, action: {})
+//    }
+//    .padding()
+//    .background(Color.shBackgroundPrimary)
+//    .preferredColorScheme(.dark)
+//}
