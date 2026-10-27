@@ -24,6 +24,10 @@ public struct RegisterView: View {
                 VStack(spacing: 24) {
                     // Header
                     VStack(spacing: 6) {
+                        Image("applogo")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
                         Text("Create Staff Account")
                             .font(.title2.bold())
                             .foregroundStyle(Color.shTextPrimary)
@@ -176,10 +180,8 @@ public struct RegisterView: View {
 
 // MARK: - Previews (Light and Dark)
 #Preview("RegisterView - Light") {
-    NavigationStack {
         RegisterView(viewModel: AuthViewModel(appSession: AppSession()))
-    }
-    .preferredColorScheme(.light)
+            .preferredColorScheme(.light)
 }
 
 #Preview("RegisterView - Dark") {

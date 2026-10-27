@@ -26,9 +26,10 @@ public struct SignInView: View {
                     VStack(spacing: 24) {
                         // Brand Header
                         VStack(spacing: 8) {
-                            Image(systemName: "hand.raised.fill")
-                                .font(.system(size: 44, weight: .bold))
-                                .foregroundStyle(Color.shPrimaryTeal)
+                            Image("applogo")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
 
                             Text("ShiftHand Staff")
                                 .font(.title2.bold())
