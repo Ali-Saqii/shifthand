@@ -124,6 +124,7 @@ struct Day7RBACTests {
         let ownerOrg = Membership(organisationId: "org_1", organisationName: "Food Rescue", role: .owner)
         let session = AppSession(authRepository: MockAuthRepository(initialMemberships: [ownerOrg]))
         session.currentUser = User(id: "usr_1", name: "Sarah Ahmed", email: "sarah@example.com")
+        session.memberships = [ownerOrg]
         session.activeMembership = ownerOrg
 
         #expect(session.membershipCount == 1)
@@ -135,6 +136,7 @@ struct Day7RBACTests {
         let leadOrg = Membership(organisationId: "org_2", organisationName: "Youth Shelter", role: .shiftLead)
         let session = AppSession(authRepository: MockAuthRepository(initialMemberships: [leadOrg]))
         session.currentUser = User(id: "usr_2", name: "Tariq Vance", email: "tariq@example.com")
+        session.memberships = [leadOrg]
         session.activeMembership = leadOrg
 
         #expect(session.membershipCount == 1)
@@ -148,6 +150,7 @@ struct Day7RBACTests {
 
         let session = AppSession(authRepository: MockAuthRepository(initialMemberships: [orgOwner, orgLead]))
         session.currentUser = User(id: "usr_1", name: "Sarah Ahmed", email: "sarah@example.com")
+        session.memberships = [orgOwner, orgLead]
         session.activeMembership = orgOwner
 
         #expect(session.membershipCount == 2)
