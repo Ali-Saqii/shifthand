@@ -22,7 +22,7 @@ public nonisolated struct DataEnvelope<T: Decodable>: Decodable {
 
 // MARK: - AnyDecodable Helper for Dynamic Metadata
 
-public nonisolated struct AnyDecodable: Decodable, Sendable {
+public nonisolated struct AnyDecodable: Decodable, @unchecked Sendable {
     public let value: Any
 
     public init(from decoder: Decoder) throws {
