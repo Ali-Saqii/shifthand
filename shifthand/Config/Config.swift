@@ -9,8 +9,8 @@
 import Foundation
 
 public enum Config {
-    private static let defaultAPIBaseURL = "http://localhost:3000/api/v1"
-    private static let defaultPublicBaseURL = "http://localhost:3000"
+    nonisolated private static let defaultAPIBaseURL = "http://localhost:3000/api/v1"
+    nonisolated private static let defaultPublicBaseURL = "http://localhost:3000"
 
     /// The base URL for authenticated and staff REST API calls.
     nonisolated public static var apiBaseURL: URL {
