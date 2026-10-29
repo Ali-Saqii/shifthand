@@ -32,6 +32,9 @@ public struct EventsTabView: View {
             }
             .navigationTitle("Events")
             .navigationBarTitleDisplayMode(.large)
+            .navigationDestination(isPresented: $showingSettings, destination: {
+                SettingsView()
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 12) {
@@ -60,9 +63,6 @@ public struct EventsTabView: View {
                     self.viewModel = vm
                     await vm.loadEvents()
                 }
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
             }
             .sheet(isPresented: $showingCreateEvent) {
                 CreateEventView(

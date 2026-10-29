@@ -33,7 +33,8 @@ public struct MainTabView: View {
             // 2. Live
             LiveTabView()
                 .tabItem {
-                    Label("Live", systemImage: "bolt.fill")
+                  Label("Live", systemImage: "dot.radiowaves.left.and.right")
+
                 }
                 .tag(Tab.live)
 
