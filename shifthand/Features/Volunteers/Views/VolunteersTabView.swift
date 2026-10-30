@@ -31,6 +31,25 @@ public struct VolunteersTabView: View {
             }
             .navigationTitle("Volunteers")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                
+                
+                if #available(iOS 26.0, *) {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Image("applogo")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }.sharedBackgroundVisibility(.hidden)
+                } else {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Image("applogo")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
+            }
         }
     }
 }

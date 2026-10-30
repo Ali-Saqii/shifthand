@@ -11,15 +11,15 @@ import SwiftUI
 
 public struct LiveTabView: View {
     @Environment(AppSession.self) private var session
-
+    
     public init() {}
-
+    
     public var body: some View {
         NavigationStack {
             ZStack {
                 Color.shBackgroundPrimary
                     .ignoresSafeArea()
-
+                
                 VStack(spacing: 20) {
                     EmptyState(
                         systemImage: "bolt.clock.fill",
@@ -31,6 +31,25 @@ public struct LiveTabView: View {
             }
             .navigationTitle("Live")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                
+                
+                if #available(iOS 26.0, *) {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Image("applogo")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }.sharedBackgroundVisibility(.hidden)
+                } else {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Image("applogo")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
+            }
         }
     }
 }
