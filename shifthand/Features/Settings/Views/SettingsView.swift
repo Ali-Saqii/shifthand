@@ -55,12 +55,13 @@ public struct SettingsView: View {
                     .foregroundStyle(Color.shPrimaryTeal)
                 }
             }
+            .sheet(isPresented: $showingJoinSheet, content: {
+               JoinOrgView(viewModel: OnboardingViewModel(appSession: session))
+            })
             .sheet(isPresented: $showingOrgPicker) {
                 OrgPickerView(isDismissable: true)
             }
-            .sheet(isPresented: $showingJoinSheet) {
-                JoinOrgView(viewModel: OnboardingViewModel(appSession: session))
-            }
+           
             .sheet(isPresented: $showingCreateSheet) {
                 CreateOrgView(viewModel: OnboardingViewModel(appSession: session))
             }
@@ -155,7 +156,7 @@ public struct SettingsView: View {
 
             // Multi-org actions
             VStack(spacing: 8) {
-                Button(action: { showingJoinSheet = true }) {
+                Button(action: {showingJoinSheet = true}) {
                     HStack {
                         Label("Join with invite code", systemImage: "person.badge.key")
                             .font(.subheadline)
